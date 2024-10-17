@@ -236,5 +236,11 @@
     "Remember me": "Se rappeler de moi",
     "Password renewal": "Renouvellement du mot de passe",
     "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "Mot de passe oublié ? Pas de problème. Indiquez-nous simplement votre adresse courriel et nous vous enverrons par courriel un lien de réinitialisation du mot de passe pour en choisir un nouveau.",
-    "Email Password Reset Link": "Envoi du lien de renouvellement"
+    "Email Password Reset Link": "Envoi du lien de renouvellement",
+    "Show this category": "Voir cette catégorie",
+    "Read this post": "Lire cet article",
+    "Posts for category ": "Articles pour la catégorie ",
+    "Read": "Lire",
+    "Nothing to show !": "Rien à montrer !",
+    "No Post found with these criteria": "Aucun article trouvé avec ces critères"
 }

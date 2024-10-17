@@ -5,7 +5,7 @@ use Livewire\Attributes\{Title, Layout};
 
 new
 #[Title('Password renewal')]
-#[Layout('components.layouts.auth')
+#[Layout('components.layouts.auth')]
 class extends Component {
 
     public string $email = '';

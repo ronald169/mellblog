@@ -20,9 +20,9 @@ class extends Component {
     public string $password = '';
 
     #[Validate('boolean')]
-    public string $remember = false;
+    public bool $remember = false;
 
-    public function login(): void
+    public function login()
     {
         $this->validate();
 
@@ -33,6 +33,8 @@ class extends Component {
         if (auth()->user()->isAdmin()) {
             return redirect()->intended('/admin/dashboard');
         }
+
+        $this->redirectIntended(default: url('/'), navigate: true);
     }
 
     public function authenticate(): void
