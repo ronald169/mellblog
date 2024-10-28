@@ -13,8 +13,6 @@ new class extends Component {
         Session::regenerateToken();
 
         $this->redirect('/');
-
-        // return redirect('/');
     }
 
 }; ?>
@@ -28,6 +26,8 @@ new class extends Component {
         </x-slot:brand>
 
         <x-slot:actions>
+            <livewire:search />
+            <x-theme-toggle title="{{ __('Toggle theme') }}" class="w-4 h-8" />
             <span class="hidden lg:block">
                 @if ($user = auth()->user())
                     <x-dropdown>

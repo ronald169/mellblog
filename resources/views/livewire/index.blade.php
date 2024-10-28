@@ -10,9 +10,12 @@ new class extends Component {
     use WithPagination;
 
     public ?Category $category = null;
+    public string $param = '';
 
-    public function mount(string $slug = ''): void
+    public function mount(string $slug = '', string $param = ''): void
     {
+        $this->param = $param;
+
         if (request()->is('category/*')) {
             $this->category = $this->getCategoryBySlug($slug);
         }
@@ -21,6 +24,10 @@ new class extends Component {
     public function getPosts(): LengthAwarePaginator
     {
         $postRepository = new PostRepository();
+
+        if (!empty($this->param)) {
+            return $postRepository->search($this->param);
+        }
 
         return $postRepository->getPostsPaginate($this->category);
     }
@@ -43,7 +50,9 @@ new class extends Component {
     <div class="relative grid items-center w-full py-5 mx-auto md:px-12 max-w-7xl">
 
         @if ($category)
-            <x-header title="{{ __('Posts for category ') }} {{ $category->title }}" size="text-2xl sm:text-3xl md:text-4xl" />
+        <x-header title="{{ __('Posts for category ') }} {{ $category->title }}" size="text-2xl sm:text-3xl md:text-4xl" />
+        @elseif($param !== '')
+            <x-header title="{{ __('Posts for search ') }} '{{ $param }}'" size="text-2xl sm:text-3xl md:text-4xl" />
         @endif
 
         <div class="mb-4 mary-table-pagination">

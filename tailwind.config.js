@@ -15,6 +15,8 @@ export default {
         extend: {},
     },
 
+    darkMode: 'class',
+
     // Add daisyUI
-    plugins: [require("daisyui")]
+    plugins: [require("@tailwindcss/typography"), require("daisyui")]
 }
