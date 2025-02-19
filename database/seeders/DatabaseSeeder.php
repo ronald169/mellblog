@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             PostSeeder::class,
             PageSeeder::class,
+            MenusSeeder::class,
+            FooterSeeder::class,
         ]);
     }
 }
