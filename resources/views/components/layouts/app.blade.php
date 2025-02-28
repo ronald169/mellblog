@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
@@ -13,6 +14,7 @@
 
     <link rel="stylesheet" href="{{ asset('storage/css/prism.css') }}">
 </head>
+
 <body class="min-h-screen font-sans antialiased bg-base-200/50 dark:bg-base-200">
     {{-- HERO --}}
     <div class="min-h-[35vw] hero" style="background-image: url({{ asset('storage/hero.jpg') }});">
@@ -32,7 +34,7 @@
     </div>
 
     {{-- NAVBAR --}}
-    <livewire:navigation.navbar />
+    <livewire:navigation.navbar :$menus />
 
     {{-- MAIN --}}
     <x-main full-width>
@@ -40,7 +42,9 @@
         <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit lg:hidden">
 
             {{-- MENU --}}
-            <livewire:navigation.sidebar>
+            <livewire:navigation.sidebar :$menus />
+
+            {{-- SIDEBAR FOOTER --}}
 
         </x-slot:sidebar>
 
@@ -50,9 +54,14 @@
         </x-slot:content>
     </x-main>
 
-    {{--  TOAST area --}}
+
+    {{-- FOOTER --}}
+    <livewire:navigation.footer />
+
+    {{-- TOAST area --}}
     <x-toast />
 
     <script src="{{ asset('storage/scripts/prism.js') }}"></script>
 </body>
+
 </html>

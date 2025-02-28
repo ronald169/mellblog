@@ -13,7 +13,7 @@ new class extends Component {
             abort(404);
         }
 
-        $this->page = $page;
+        $this->fill($this->page);
     }
 
 }; ?>
@@ -25,17 +25,16 @@ new class extends Component {
 
     <div class="flex justify-end gap-4">
         @auth
-            @if (Auth::user()->isAdmin())
-                <x-popover>
-                    <x-slot:trigger>
-                        <x-button icon="c-pencil-square" link="#" spinner
-                            class="btn-ghost btn-sm" />
-                    </x-slot:trigger>
-                    <x-slot:content class="pop-small">
-                        @lang('Edit this page')
-                    </x-slot:content>
-                </x-popover>
-            @endif
+        @if (Auth::user()->isAdmin())
+        <x-popover>
+            <x-slot:trigger>
+                <x-button icon="c-pencil-square" link="#" spinner class="btn-ghost btn-sm" />
+            </x-slot:trigger>
+            <x-slot:content class="pop-small">
+                @lang('Edit this page')
+            </x-slot:content>
+        </x-popover>
+        @endif
         @endauth
     </div>
 

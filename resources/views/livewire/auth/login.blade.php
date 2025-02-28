@@ -78,14 +78,17 @@ class extends Component {
 }; ?>
 
 <div>
-    <x-card class="flex items-center justify-center h-screen" title="{{ __('Login') }}" shadow separator progress-indicator>
+    <x-card class="flex items-center justify-center h-screen" title="{{ __('Login') }}" shadow separator
+        progress-indicator>
         <x-form wire:submit="login">
             <x-input label="{{ __('E-mail') }}" wire:model="email" icon="o-envelope" type="email" inline />
-            <x-input label="{{ __('Password') }}" wire:model="password" type="password" icon="o-key" type="password" inline />
+            <x-input label="{{ __('Password') }}" wire:model="password" type="password" icon="o-key" type="password"
+                inline />
             <x-checkbox label="{{ __('Remember me') }}" wire:model="remember" />
             <x-slot:actions>
                 <div class="flex flex-col space-y-2 flex-end sm:flex-row sm:space-y-0 sm:space-x-2">
-                    <x-button label="{{ __('Login') }}" type="submit" icon="o-paper-airplane" class="ml-2 btn-primary sm:order-1" />
+                    <x-button label="{{ __('Login') }}" type="submit" icon="o-paper-airplane"
+                        class="ml-2 btn-primary sm:order-1" />
                     <div class="flex flex-col space-y-2 flex-end sm:flex-row sm:space-y-0 sm:space-x-2">
                         <x-button label="{{ __('Forgot your password?') }}" class="btn-ghost" link="/forgot-password" />
                         <x-button label="{{ __('Create an account') }}" class="btn-ghost" link="/register" />

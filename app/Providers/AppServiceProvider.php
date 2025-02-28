@@ -25,9 +25,8 @@ class AppServiceProvider extends ServiceProvider
         Facades\View::composer(['components.layouts.app'], function (View $view) {
             $view->with(
                 'menus',
-                Menu::with(['submenus' => function ($query) {
-                    $query->orderBy('order');
-                }])->orderBy('order')->get()
+                Menu::with(['submenus' => fn($query) => $query->orderBy('order') ])
+                    ->orderBy('order')->get()
             );
         });
     }

@@ -11,11 +11,10 @@ class PostRepository
 {
     public function getPostsPaginate(?Category $category): LengthAwarePaginator
     {
-        $query = $this->getBaseQuery()->orderBy('pinned', 'desc')->latest();
 
-        if ($category) {
-            $query->whereBelongsTo($category);
-        }
+        $query = $this->getBaseQuery()->orderBy('pinned', 'desc')
+                ->when($category, fn ($query) => $query->where('category_id', $category->id))
+                ->latest();
 
         return $query->paginate(config('app.pagination'));
     }
@@ -47,17 +46,17 @@ class PostRepository
             ->whereActive(true);
     }
 
-    public function getPostBySlug(string $slug): Post
-    {
-        return Post::with('user:id,name', 'category')->whereSlug($slug)->firstOrFail();
-    }
+    // public function getPostBySlug(string $slug): Post
+    // {
+    //     return Post::with('user:id,name', 'category')->whereSlug($slug)->firstOrFail();
+    // }
 
     public function search(string $search): LengthAwarePaginator
     {
         return $this->getBaseQuery()
             ->latest()
             ->where(function ($query) use ($search) {
-                $query->where('body', 'like', "%{search}%")
+                $query->where('body', 'like', "%{$search}%")
                     ->orWhere('title', 'like', "%{$search}%");
             })
             ->paginate(config('app.pagination'));

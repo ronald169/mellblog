@@ -57,7 +57,7 @@ class extends Component {
     <x-card class="flex items-center justify-center h-screen" title="{{ __('Register') }}" shadow separator
         progress-indicator>
 
-        <x-form wire:submit="register" class="w-full sm:min-w-[30vw]">
+        <x-form wire:submit="register" class="w-full sm:min-w-[36vw]">
             <x-input label="{{ __('Name') }}" wire:model="name" icon="o-user" inline required />
             <x-input label="{{ __('E-mail') }}" wire:model="email" icon="o-envelope" inline required />
             <x-input label="{{ __('Password') }}" wire:model="password" type="password" icon="o-key" inline required />
