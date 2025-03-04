@@ -25,14 +25,10 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->unsignedBigInteger('parent_id')
-                ->nullable()
-                ->default(null);
+            $table->unsignedBigInteger('parent_id')->nullable()->default(null);
             $table->foreign('parent_id')
                 ->references('id')
                 ->on('comments')
-                ->nullable()
-                ->default(null)
                 ->onDelete('cascade');
 
             $table->timestamps();

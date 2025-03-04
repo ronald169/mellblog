@@ -3,18 +3,40 @@
 use Livewire\Volt\Component;
 use App\Models\Post;
 use App\Repositories\PostRepository;
+use Illuminate\Support\Collection;
 
 new class extends Component {
 
     public Post $post;
 
-    public function mount(): void
+    public int $commentsCount;
+
+    public Collection $comments;
+
+    public bool $listComments = false;
+
+    public function showComments(): void
     {
-        // $postRepository = new PostRepository();
+        $this->listComments = true;
 
-        // $this->post = $postRepository->getPostBySlug($slug);
+        $this->comments = $this->post
+            ->validComments()
+            ->where('parent_id', null)
+            ->withCount(['children' => function ($query) {
+                $query->whereHas('user', fn($query) => $query->where('valid', true));
+            }])
+            ->with(['user' => fn($query) => $query->select('id', 'name', 'email')->withCount('comments')])
+            ->latest()
+            ->get();
+    }
 
-        $this->fill($this->post);
+    public function mount($post): void
+    {
+        $postRepository = new PostRepository();
+
+        $this->post = $postRepository->getPostBySlug($post->slug);
+
+        $this->commentsCount = $this->post->valid_comments_count;
     }
 
 }; ?>
@@ -49,5 +71,26 @@ new class extends Component {
     </div>
     <br>
     <hr>
-    <p>@lang('By ') {{ $post->user->name }}</p>
+
+
+    <div class="flex justify-between">
+        <p>@lang('By ') {{ $post->user->name }}</p>
+        <em>
+            @if ($commentsCount > 0)
+            @lang('Number of comments: ') {{ $commentsCount }}
+            @else
+            @lang('No comments')
+            @endif
+        </em>
+    </div>
+
+    <div id="bottom" class="relative items-center w-full py-5 mx-auto md:px-12 max-w-7xl">
+        @if ($commentsCount > 0)
+        <div class="flex justify-center">
+            <x-button wire:click='showComments'
+                label="{{ $commentsCount > 1 ? __('View comments') : __('View comment') }}" spinner
+                class='btn-outline' />
+        </div>
+        @endif
+    </div>
 </div>

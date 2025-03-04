@@ -46,10 +46,13 @@ class PostRepository
             ->whereActive(true);
     }
 
-    // public function getPostBySlug(string $slug): Post
-    // {
-    //     return Post::with('user:id,name', 'category')->whereSlug($slug)->firstOrFail();
-    // }
+    public function getPostBySlug(string $slug): Post
+    {
+        return Post::with('user:id,name', 'category')
+            ->whereSlug($slug)
+            ->withCount('validComments')
+            ->firstOrFail();
+    }
 
     public function search(string $search): LengthAwarePaginator
     {
