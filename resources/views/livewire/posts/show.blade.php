@@ -85,12 +85,32 @@ new class extends Component {
     </div>
 
     <div id="bottom" class="relative items-center w-full py-5 mx-auto md:px-12 max-w-7xl">
+        @if ($listComments)
+        <x-card title="{{ __('Comments') }}" shadow separator>
+
+            @foreach($comments as $comment)
+            @if (!$comment->parent_id)
+            <livewire:posts.comment :$comment :depth="0" :key="$comment->id" />
+            @endif
+            @endforeach
+
+
+            @auth
+            <livewire:posts.commentBase :postId="$post->id" />
+            @endauth
+        </x-card>
+        @else
         @if ($commentsCount > 0)
         <div class="flex justify-center">
             <x-button wire:click='showComments'
                 label="{{ $commentsCount > 1 ? __('View comments') : __('View comment') }}" spinner
                 class='btn-outline' />
         </div>
+        @else
+        @auth
+        <livewire:posts.commentBase :postId="$post->id" />
+        @endauth
+        @endif
         @endif
     </div>
 </div>

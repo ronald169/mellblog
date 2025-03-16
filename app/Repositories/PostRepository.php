@@ -9,15 +9,16 @@ use Exception;
 
 class PostRepository
 {
-    public function getPostsPaginate(?Category $category): LengthAwarePaginator
+    public function getPostsPaginate(?Category $category = null): LengthAwarePaginator
     {
 
         $query = $this->getBaseQuery()->orderBy('pinned', 'desc')
-                ->when($category, fn ($query) => $query->where('category_id', $category->id))
+                ->when($category, fn (Builder $query) => $query->where('category_id', $category->id))
                 ->latest();
 
         return $query->paginate(config('app.pagination'));
     }
+
 
     protected function getBaseQuery(): Builder
     {

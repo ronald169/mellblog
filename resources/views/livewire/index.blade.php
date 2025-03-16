@@ -19,7 +19,6 @@ new class extends Component {
         $this->param = $param;
 
         if (request()->is('category/*')) {
-            // $this->category = $this->getCategoryBySlug($slug);
             $this->fill($this->category);
         }
     }
@@ -35,10 +34,6 @@ new class extends Component {
         return $postRepository->getPostsPaginate($this->category);
     }
 
-    /* protected function getCategoryBySlug(string $slug): ?Category
-    {
-        return 'category' === request()->segment(1) ? Category::whereSlug($slug)->firstOrFail() : null;
-    } */
 
     public function with(): array
     {

@@ -7,13 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
+use Mews\Purifier\Casts\CleanHtmlInput;
 
 class Comment extends Model
 {
     /** @use HasFactory<\Database\Factories\CommentFactory> */
     use HasFactory, Notifiable;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'body', 'user_id', 'post_id', 'parent_id'
+    ];
+
+    protected $casts = [
+        'body' => CleanHtmlInput::class,
+    ];
 
     public function user(): BelongsTo
     {
