@@ -267,5 +267,14 @@
     "An answer has been created on your comment": "Une réponse a été apportée à votre commentaire",
     "Show this comment": "Voir ce commentaire",
     "Answer": "Répondre",
-    "Show the answers": "Afficher les réponses"
+    "Show the answers": "Afficher les réponses",
+    "Update profile": "Modifier le profil",
+    "Your name can't be changed": "Votre nom ne peut pas être modifié",
+    "You can change your profile picture on Gravatar": "Vous pouvez changer votre image de profil sur Gravatar",
+    "Generate a secure password": "Créer un mot de passe sécurisé",
+    "Profile updated with success.": "Profil mis à jour avec succès.",
+    "Delete account": "Supprimer le compte",
+    "Are you sure to delete your account?": "Etes-vous sûr de vouloir supprimer votre compte ?",
+    "Profile": "Profil",
+    "Password confirmation": "Confirmation du mot de passe"
 }
