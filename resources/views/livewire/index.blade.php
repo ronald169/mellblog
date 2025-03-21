@@ -14,12 +14,16 @@ new class extends Component {
 
     public string $param = '';
 
+    public bool $favorites = false;
+
     public function mount(string $slug = '', string $param = ''): void
     {
         $this->param = $param;
 
         if (request()->is('category/*')) {
             $this->fill($this->category);
+        } elseif (request()->is('favorites')) {
+            $this->favorites = true;
         }
     }
 
@@ -29,6 +33,10 @@ new class extends Component {
 
         if (!empty($this->param)) {
             return $postRepository->search($this->param);
+        }
+
+        if ($this->favorites) {
+            return $postRepository->getFavoritePosts(auth()->user());
         }
 
         return $postRepository->getPostsPaginate($this->category);
@@ -52,6 +60,8 @@ new class extends Component {
             size="text-2xl sm:text-3xl md:text-4xl" />
         @elseif($param !== '')
         <x-header title="{{ __('Posts for search ') }} '{{ $param }}'" size="text-2xl sm:text-3xl md:text-4xl" />
+        @elseif($favorites)
+        <x-header title="{{ __('Your favorites posts') }}" size="text-2xl sm:text-3xl md:text-4xl" />
         @endif
 
         <div class="mb-4 mary-table-pagination">
@@ -76,8 +86,9 @@ new class extends Component {
                     </div>
                     @if($post->image)
                     <x-slot:figure>
-                        <a href="{{ url('/posts/' . $post->slug) }}">
-                            <img src="{{ asset('storage/photos/' . $post->image) }}" alt="{{ $post->title }}" />
+                        <a href="{{ url('/posts/' . $post->slug) }}" class='h-56'>
+                            <img src="{{ asset('storage/photos/' . $post->image) }}" alt="{{ $post->title }}"
+                                class="object-cover w-full" />
                         </a>
                     </x-slot:figure>
                     @endif
@@ -86,6 +97,11 @@ new class extends Component {
                         @if ($post->pinned)
                         <x-badge value="{{ __('Pinned') }}" class="p-3 badge-warning" />
                         @endif
+                        @auth
+                        @if ($post->is_favorited)
+                        <x-icon name='s-star' class='w-6 h-6 text-yellow-500 cursor-pointer' />
+                        @endif
+                        @endauth
                     </x-slot:menu>
 
                     <x-slot:actions>

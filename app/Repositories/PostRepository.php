@@ -2,10 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Models\{Category, Post};
+use App\Models\{Category, Post, User};
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Exception;
+use Illuminate\Support\Facades\DB;
 
 class PostRepository
 {
@@ -22,36 +22,28 @@ class PostRepository
 
     protected function getBaseQuery(): Builder
     {
-        $specificReqs = [
-            'mysql'  => "LEFT(body, LOCATE(' ', body, 700))",
-            'sqlite' => 'substr(body, 1, 700)',
-            'pgsql'  => 'substring(body from 1 for 700)',
-        ];
 
-        $usedDbSystem = env('DB_CONNECTION', 'mysql');
-
-        if (!isset($specificReqs[$usedDbSystem])) {
-            throw new Exception("Base de données non supportée: {$usedDbSystem}");
-        }
-
-        $adaptedReq = $specificReqs[$usedDbSystem];
-
-        return Post::select('id', 'slug', 'image', 'title', 'user_id', 'category_id', 'created_at', 'pinned')
-            ->selectRaw(
-                "CASE
-                    WHEN LENGTH(body) <= 300 THEN body
-                    ELSE {$adaptedReq}
-                END AS excerpt",
-            )
+        return Post::query()
+            ->select('id', 'slug', 'image', 'title', 'body as excerpt', 'user_id', 'category_id', 'created_at', 'pinned')
             ->with('user:id,name', 'category')
+            ->when(auth()->check(), function (Builder $query) {
+                $query->addSelect([
+                    'is_favorited' => DB::table('favorites')
+                        ->selectRaw('1')
+                        ->whereColumn('post_id', 'posts.id')
+                        ->where('user_id', auth()->id())
+                        ->limit(1)
+                ]);
+            })
             ->whereActive(true);
     }
 
     public function getPostBySlug(string $slug): Post
     {
         return Post::with('user:id,name', 'category')
-            ->whereSlug($slug)
             ->withCount('validComments')
+            ->withExists(['favoritedByUsers' => fn ($query) => $query->where('user_id', auth()->id())])
+            ->whereSlug($slug)
             ->firstOrFail();
     }
 
@@ -63,6 +55,14 @@ class PostRepository
                 $query->where('body', 'like', "%{$search}%")
                     ->orWhere('title', 'like', "%{$search}%");
             })
+            ->paginate(config('app.pagination'));
+    }
+
+    public function getFavoritePosts(User $user): LengthAwarePaginator
+    {
+        return $this->getBaseQuery()
+            ->whereHas('favoritedByUsers', fn (Builder $query) => $query->where('user_id', $user->id))
+            ->latest()
             ->paginate(config('app.pagination'));
     }
 }

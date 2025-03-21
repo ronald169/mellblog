@@ -9,6 +9,7 @@ Volt::route('/category/{category:slug}', 'index');
 Volt::route('/posts/{post:slug}', 'posts.show')->name('posts.show');
 Volt::route('/search/{param}', 'index')->name('posts.search');
 Volt::route('/pages/{page:slug}', 'pages.show')->name('pages.show');
+Volt::route('/favorites', 'index')->name('posts.favorites');
 
 Route::middleware('guest')->group(function () {
     Volt::route('/register', 'auth.register')->name('register');

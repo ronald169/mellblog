@@ -17,3 +17,8 @@
     @apply bg-base-100
 }
 
+/*  Scroll fluid */
+html {
+    scroll-behavior: smooth;
+}
+
