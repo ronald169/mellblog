@@ -24,6 +24,20 @@ class extends Component {
 
     public function login()
     {
+        /*$credentials = $this->validate();
+
+        if (auth()->attempt($credentials)) {
+            request()->session()->regenerate();
+
+            if (auth()->user()->isAdmin()) {
+                return redirect()->intended('/admin/dashboard');
+            }
+
+            return redirect()->intended('/');
+        }
+
+        $this->addError('email', __('The provided credentials do not match our records.')); */
+
         $this->validate();
 
         $this->authenticate();

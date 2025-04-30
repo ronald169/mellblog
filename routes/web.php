@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\IsAdminOrRedac;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -20,4 +21,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Volt::route('/profile', 'auth.profile')->name('profile');
+
+    Route::middleware(IsAdminOrRedac::class)->group(function () {
+        Volt::route('/admin/dashboard', 'admin.index')->name('admin');
+    });
 });

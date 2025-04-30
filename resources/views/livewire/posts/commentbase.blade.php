@@ -88,7 +88,7 @@ new class extends Component {
         wire:icon="o-exclamation-triangle" />
     @else
     <div class="flex flex-col justify-between mb-4 md:flex-row">
-        <x-avatar :image="$user->photo ?? '/profile-empty.jpg'" class="!w-24">
+        <x-avatar :image="$comment->photo ?? '/profile-empty.jpg'" class="!w-24">
 
             <x-slot:title class="pl-2 text-xl">
                 {{ Auth::user()->name }}

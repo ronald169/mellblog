@@ -22,7 +22,7 @@ new class extends Component {
 
         if (request()->is('category/*')) {
             $this->fill($this->category);
-        } elseif (request()->is('favorites')) {
+        } elseif (request()->is('favorites') && auth()->check()) {
             $this->favorites = true;
         }
     }

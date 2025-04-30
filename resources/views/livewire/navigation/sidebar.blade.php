@@ -36,6 +36,7 @@ new class() extends Component {
             </x-slot:actions>
         </x-list-item>
         <x-menu-item title="{{ __('Profile') }}" link="{{ route('profile') }}" />
+        <x-menu-item title="{{ __('Admin') }}" link="{{ route('admin') }}" />
         <x-menu-separator />
         @else
         <x-menu-item title="{{ __('Login') }}" link="/login" />

@@ -68,6 +68,7 @@ new class extends Component {
                         <x-button label="{{ $user->name }}" class="btn-ghost" />
                     </x-slot:trigger>
                     <x-menu-item title="{{ __('Profile') }}" link="{{ route('profile') }}" />
+                    <x-menu-item title="{{ __('Admin') }}" link="{{ route('admin') }}" />
                     <x-menu-item title="{{ __('Logout') }}" wire:click="logout" />
                 </x-dropdown>
                 @else

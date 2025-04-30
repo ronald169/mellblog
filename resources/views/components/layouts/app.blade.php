@@ -45,7 +45,6 @@
             <livewire:navigation.sidebar :$menus />
 
             {{-- SIDEBAR FOOTER --}}
-
         </x-slot:sidebar>
 
         {{-- The `$slot` goes here --}}
