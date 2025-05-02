@@ -31,6 +31,9 @@ new class extends Component {
 
         <x-menu-item title="{{ __('Dashboard') }}" icon='o-building-office-2' link="{{ route('admin') }}" />
         <x-menu-item title="{{ __('Go on site') }}" icon='m-arrow-right-end-on-rectangle' link="/" />
+        <x-menu-sub title="{{ __('Posts') }}" icon='s-document-text'>
+            <x-menu-item title="{{ __('All posts') }}" link="{{ route('admin.posts.index') }}" />
+        </x-menu-sub>
         <x-menu-item>
             <x-theme-toggle />
         </x-menu-item>

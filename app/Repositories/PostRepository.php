@@ -6,6 +6,7 @@ use App\Models\{Category, Post, User};
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class PostRepository
 {
@@ -26,12 +27,12 @@ class PostRepository
         return Post::query()
             ->select('id', 'slug', 'image', 'title', 'body as excerpt', 'user_id', 'category_id', 'created_at', 'pinned')
             ->with('user:id,name', 'category')
-            ->when(auth()->check(), function (Builder $query) {
+            ->when(Auth::check(), function (Builder $query) {
                 $query->addSelect([
                     'is_favorited' => DB::table('favorites')
                         ->selectRaw('1')
                         ->whereColumn('post_id', 'posts.id')
-                        ->where('user_id', auth()->id())
+                        ->where('user_id', Auth::id())
                         ->limit(1)
                 ]);
             })
@@ -42,7 +43,7 @@ class PostRepository
     {
         return Post::with('user:id,name', 'category')
             ->withCount('validComments')
-            ->withExists(['favoritedByUsers' => fn ($query) => $query->where('user_id', auth()->id())])
+            ->withExists(['favoritedByUsers' => fn ($query) => $query->where('user_id', Auth::id())])
             ->whereSlug($slug)
             ->firstOrFail();
     }
@@ -64,5 +65,17 @@ class PostRepository
             ->whereHas('favoritedByUsers', fn (Builder $query) => $query->where('user_id', $user->id))
             ->latest()
             ->paginate(config('app.pagination'));
+    }
+
+    public function generateUniqueSlug(string $slug): string
+    {
+        $newSlug = $slug;
+        $counter = 1;
+        while(Post::where('slug', $newSlug)->exists()) {
+            $newSlug = $slug . '-' . $counter;
+            ++$counter;
+        }
+
+        return $newSlug;
     }
 }

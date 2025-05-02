@@ -24,5 +24,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware(IsAdminOrRedac::class)->group(function () {
         Volt::route('/admin/dashboard', 'admin.index')->name('admin');
+        Volt::route('/admin/posts/index', 'admin.posts.index')->name('admin.posts.index');
     });
 });

@@ -291,5 +291,17 @@
     "in post:": "dans l'article :",
     "Go on site": "Aller sur le site",
     "Edit or answer": "Modifier ou repondre",
-    "Posts": "Articles"
+    "Posts": "Articles",
+    "All posts": "Tous les articles",
+    "Title": "Titre",
+    "Author": "Auteur",
+    "Updated": "Mis à jour",
+    "Category": "Catégorie",
+    "Published": "Publié",
+    "Add a post": "Ajouter un article",
+    "Are you sure to delete this post?": "Etes-vous sûr de vouloir supprimer cet article ?",
+    "deleted": "supprimé",
+    "Clone": "Dupliquer",
+    "Filters": "Filtres",
+    "Select a category": "Sélectionnez une catégorie"
 }
