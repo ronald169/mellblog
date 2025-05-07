@@ -10,6 +10,36 @@
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
 
+
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                packages: {'[+]': ['ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {load: ['[tex]/ams']},
+            startup: {
+                ready: () => {
+                    console.log("MathJax est prêt !");
+                    MathJax.startup.defaultReady();
+                    // Re-traitement manuel si nécessaire
+                    if (window.MathJax.typesetPromise) {
+                        window.MathJax.typesetPromise();
+                    }
+                }
+            }
+        };
+    </script>
+    <!-- Chargement de MathJax -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="stylesheet" href="{{ asset('storage/css/prism.css') }}">

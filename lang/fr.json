@@ -303,5 +303,16 @@
     "deleted": "supprimé",
     "Clone": "Dupliquer",
     "Filters": "Filtres",
-    "Select a category": "Sélectionnez une catégorie"
+    "Select a category": "Sélectionnez une catégorie",
+    "Pinned": "Épinglé",
+    "Content": "Contenu",
+    "Meta Keywords": "Meta mots-clefs",
+    "Meta description": "Meta description",
+    "Keywords separated by comma": "Mots-clefs séparés par une virgule",
+    "Max 70 chars": "Max 70 caractères",
+    "Max 160 chars": "Max 160 caractères",
+    "Enter the title": "Entrez le titre",
+    "Post added with success.": "Article ajouté avec succès.",
+    "Featured image": "Image mise en avant",
+"Click on the image to modify": "Cliquez sur cette image pour la modifier"
 }
