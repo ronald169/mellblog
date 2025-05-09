@@ -26,5 +26,6 @@ Route::middleware('auth')->group(function () {
         Volt::route('/admin/dashboard', 'admin.index')->name('admin');
         Volt::route('/admin/posts/index', 'admin.posts.index')->name('admin.posts.index');
         Volt::route('/admin/posts/create', 'admin.posts.create')->name('admin.posts.create');
+        Volt::route('/admin/posts/{post:slug}/edit', 'admin.posts.edit')->name('admin.posts.edit');
     });
 });

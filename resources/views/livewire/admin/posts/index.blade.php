@@ -158,7 +158,8 @@ class extends Component {
 
     @if ($posts->count() > 0)
     <x-card>
-        <x-table stripped :headers="$headers" :rows="$posts" link="#" with-pagination :sort-by="$sortBy">
+        <x-table stripped :headers="$headers" :rows="$posts" link="/admin/posts/{slug}/edit" with-pagination
+            :sort-by="$sortBy">
             @scope('header_comments_count', $header)
             {{ $header['label'] }}
             <x-icon name='c-chat-bubble-left' />

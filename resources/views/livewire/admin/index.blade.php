@@ -50,7 +50,6 @@ class extends Component {
             'posts' => Post::select('id', 'title', 'slug', 'user_id', 'created_at', 'updated_at')
                 ->when($isRedac, fn(Builder $q) => $q->where('user_id', $userId))
                 ->latest()
-                ->take(5)
                 ->get(),
 
             'commentsNumber' => Comment::when($isRedac, fn (Builder $q) => $q->whereRelation('post', 'user_id', $userId))->count(),
@@ -72,7 +71,7 @@ class extends Component {
             @lang('In a glance')
         </x-slot:heading>
         <x-slot:content class='flex flex-wrap gap-4'>
-            <a href="#" class='flex-grow'>
+            <a href="{{ route('admin.posts.index') }}" class='flex-grow'>
                 <x-stat title="{{ __('Posts') }}" description="" value="{{ $posts->count() }}" icon='s-document-text'
                     class='shadow-hover' />
             </a>

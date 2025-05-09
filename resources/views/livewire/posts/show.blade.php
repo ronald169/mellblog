@@ -50,6 +50,18 @@ new class extends Component {
         }
     }
 
+    public function clonePost(int $postId): void
+    {
+        $originalPost = Post::findOrFail($postId);
+        $clonedPost = $originalPost->replicate();
+        $postRepository = new PostRepository();
+        $clonedPost->slug = $postRepository->generateUniqueSlug($originalPost->slug);
+        $clonedPost->active = false;
+        $clonedPost->save();
+
+        redirect()->route('admin.posts.edit', $clonedPost->slug);
+    }
+
     public function mount($post): void
     {
         $postRepository = new PostRepository();
@@ -83,6 +95,29 @@ new class extends Component {
                 @endif
             </x-slot:content>
         </x-popover>
+
+        @if (Auth::user()->isAdmin() || Auth::user()->id == $post->user_id)
+        <x-popover>
+            <x-slot:trigger>
+                <x-button icon="c-pencil-square" spinner class="btn-sm btn-ghost"
+                    link="{{ route('admin.posts.edit', $post) }}" />
+            </x-slot:trigger>
+            <x-slot:content class="pop-small">
+                @lang('Edit this post')
+            </x-slot:content>
+        </x-popover>
+
+        <x-popover>
+            <x-slot:trigger>
+                <x-button icon="o-finger-print" spinner wire:click="clonePost({{ $post->id }})"
+                    class="btn-sm btn-ghost" />
+            </x-slot:trigger>
+            <x-slot:content class="pop-small">
+                @lang('Clone this post')
+            </x-slot:content>
+        </x-popover>
+
+        @endif
         @endauth
         <x-popover>
             <x-slot:trigger>

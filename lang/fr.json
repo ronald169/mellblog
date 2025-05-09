@@ -314,5 +314,9 @@
     "Enter the title": "Entrez le titre",
     "Post added with success.": "Article ajouté avec succès.",
     "Featured image": "Image mise en avant",
-"Click on the image to modify": "Cliquez sur cette image pour la modifier"
+    "Click on the image to modify": "Cliquez sur cette image pour la modifier",
+    "Edit a post": "Modifier un article",
+    "Post updated with success.": "Article mis à jour avec succès.",
+    "Edit this post": "Modifier cet article",
+    "Clone this post": "Dupliquer cet article"
 }
