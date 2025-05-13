@@ -35,6 +35,11 @@ new class extends Component {
             <x-menu-item title="{{ __('All posts') }}" link="{{ route('admin.posts.index') }}" />
             <x-menu-item title="{{ __('Add a post') }}" link="{{ route('admin.posts.create') }}" />
         </x-menu-sub>
+        @if (Auth::user()->isAdmin())
+        <x-menu-item title="{{ __('Categories') }}" icon='s-document-text'
+            link="{{ route('admin.categories.index') }}" />
+        @endif
+
         <x-menu-item>
             <x-theme-toggle />
         </x-menu-item>

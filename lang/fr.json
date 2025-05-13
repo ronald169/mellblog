@@ -318,5 +318,11 @@
     "Edit a post": "Modifier un article",
     "Post updated with success.": "Article mis à jour avec succès.",
     "Edit this post": "Modifier cet article",
-    "Clone this post": "Dupliquer cet article"
+    "Clone this post": "Dupliquer cet article",
+    "Are you sure to delete this category?": "Etes-vous sûr de vouloir supprimer cette catégorie ?",
+    "Category deleted with success.": "Catégorie supprimée avec succès.",
+    "Create a new category": "Créer une nouvelle catégorie",
+    "Category created with success.": "Catégorie créée avec succès.",
+    "Category updated successfully.": "Catégorie mise à jour avec succès.",
+    "Edit a category": "Modifier une catégorie"
 }

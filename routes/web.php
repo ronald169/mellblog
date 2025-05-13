@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAdminOrRedac;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -27,5 +28,11 @@ Route::middleware('auth')->group(function () {
         Volt::route('/admin/posts/index', 'admin.posts.index')->name('admin.posts.index');
         Volt::route('/admin/posts/create', 'admin.posts.create')->name('admin.posts.create');
         Volt::route('/admin/posts/{post:slug}/edit', 'admin.posts.edit')->name('admin.posts.edit');
+        Volt::route('/admin/posts/{post:slug}/edit', 'admin.posts.edit')->name('admin.posts.edit');
+    });
+
+    Route::middleware(IsAdmin::class)->prefix('admin')->group(function () {
+        Volt::route('/categories/index', 'admin.categories.index')->name('admin.categories.index');
+        Volt::route('/categories/{category}/edit', 'admin.categories.edit')->name('admin.categories.edit');
     });
 });
