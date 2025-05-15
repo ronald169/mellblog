@@ -22,3 +22,6 @@ html {
     scroll-behavior: smooth;
 }
 
+.pop-small {
+    @apply text-sm px-2 py-1
+}

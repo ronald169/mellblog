@@ -1,5 +1,5 @@
 <div>
-    <x-form wire:submit='save'>
+    <x-form wire:submit='save' separator>
         <x-input label="{{ __('Title') }}" wire:model.debounce.500ms='title' wire:change="$refresh" />
         <x-input label="{{ __('Slug') }}" wire:model='slug' />
 

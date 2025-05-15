@@ -49,7 +49,7 @@ class extends Component {
         return [
             ['key' => 'title', 'label' => __('Title'), 'sortable' => true],
             ['key' => 'slug', 'label' => __('Slug')],
-            ['key' => 'posts_count', 'label' => __('Posts')],
+            ['key' => 'posts_count', 'label' => __('Posts count')],
         ];
     }
 
@@ -80,8 +80,8 @@ class extends Component {
 
 <div class='grid gap-5'>
     <x-header title="{{ __('Categories') }}" separator progress-indicator>
-        <x-slot:actions>
-            <x-button icon='s-building-office-2' link="{{ route('admin') }}" class='btn-ghost lg:hidden' />
+        <x-slot:actions class='lg:hidden'>
+            <x-button icon='s-building-office-2' link="{{ route('admin') }}" class='btn-ghost' />
         </x-slot:actions>
     </x-header>
 

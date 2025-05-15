@@ -324,5 +324,13 @@
     "Create a new category": "Créer une nouvelle catégorie",
     "Category created with success.": "Catégorie créée avec succès.",
     "Category updated successfully.": "Catégorie mise à jour avec succès.",
-    "Edit a category": "Modifier une catégorie"
+    "Edit a category": "Modifier une catégorie",
+    "Posts count": "Nombre d'article",
+    "All pages": "Toutes les pages",
+    "Add a page": "Ajouter une page",
+    "Are you sure to delete this page?": "Êtes-vous sûr de vouloir supprimer cette page ?",
+    "Page added with success.": "Page ajoutée avec succès.",
+    "Page deleted": "Page supprimé",
+    "Page edited with success.": "Page mise à jour avec succès.",
+    "Edit a page": "Modifier une page"
 }

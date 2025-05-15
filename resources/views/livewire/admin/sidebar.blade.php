@@ -38,6 +38,10 @@ new class extends Component {
         @if (Auth::user()->isAdmin())
         <x-menu-item title="{{ __('Categories') }}" icon='s-document-text'
             link="{{ route('admin.categories.index') }}" />
+        <x-menu-sub title="{{ __('Pages') }}" icon='s-document'>
+            <x-menu-item title="{{ __('All pages') }}" link="{{ route('admin.pages.index') }}" />
+            <x-menu-item title="{{ __('Add a page') }}" link="{{ route('admin.pages.create') }}" />
+        </x-menu-sub>
         @endif
 
         <x-menu-item>
