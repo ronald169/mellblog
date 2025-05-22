@@ -332,5 +332,20 @@
     "Page added with success.": "Page ajoutée avec succès.",
     "Page deleted": "Page supprimé",
     "Page edited with success.": "Page mise à jour avec succès.",
-    "Edit a page": "Modifier une page"
+    "Edit a page": "Modifier une page",
+    "Accounts": "Comptes",
+    "All": "Tous",
+    "Administrators": "Administrateurs",
+    "Redactors": "Rédacteurs",
+    "Administrator": "Administrateur",
+    "Redactor": "Rédacteur",
+    "Role": "Rôle",
+    "Valid": "Valide",
+    "Valid user": "Utilisateur validé",
+    "Send an email": "Envoyer un email",
+    "Are you sure to delete this user?": "Etes-vous sûr de vouloir supprimer cet utilisateur ?",
+    "Registration": "Inscription",
+    "Edit an account": "Modifier un compte",
+    "Select a role": "Sélectionnez un rôle",
+    "User edited with success.": "Utilisateur mis à jour avec succès."
 }

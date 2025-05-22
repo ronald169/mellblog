@@ -35,7 +35,11 @@ new class extends Component {
             <x-menu-item title="{{ __('All posts') }}" link="{{ route('admin.posts.index') }}" />
             <x-menu-item title="{{ __('Add a post') }}" link="{{ route('admin.posts.create') }}" />
         </x-menu-sub>
+
         @if (Auth::user()->isAdmin())
+        <x-menu-sub title="{{ __('Accounts') }}" icon='o-user-group'>
+            <x-menu-item title="{{ __('All users') }}" link="{{ route('admin.users.index') }}" />
+        </x-menu-sub>
         <x-menu-item title="{{ __('Categories') }}" icon='s-document-text'
             link="{{ route('admin.categories.index') }}" />
         <x-menu-sub title="{{ __('Pages') }}" icon='s-document'>
@@ -47,5 +51,5 @@ new class extends Component {
         <x-menu-item>
             <x-theme-toggle />
         </x-menu-item>
-    </x-menu>
+        </x-menu-sub>
 </div>

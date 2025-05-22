@@ -37,5 +37,8 @@ Route::middleware('auth')->group(function () {
         Volt::route('/pages/index', 'admin.pages.index')->name('admin.pages.index');
         Volt::route('/pages/create', 'admin.pages.create')->name('admin.pages.create');
         Volt::route('/pages/{page:slug}/edit', 'admin.pages.edit')->name('admin.pages.edit');
+        Volt::route('/users/index', 'admin.users.index')->name('admin.users.index');
+        Volt::route('/users/{user}/edit', 'admin.users.edit')->name('admin.users.edit');
+
     });
 });
